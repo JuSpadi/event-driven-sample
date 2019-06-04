@@ -1,0 +1,13 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+app:
+  topic:
+    event-driven-topic-in: event-driven-in
+    event-driven-topic-out: event-driven-out
+
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    com.adeo.event.driven.sample: DEBUG

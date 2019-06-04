@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    container_name: zookeeper
+    hostname: zookeeper
+    ports:
+      - 2181:2181
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper
+
+  kafka:
+    image: confluentinc/cp-kafka
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - 9092:9092
+      - 29092:29092  
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_IN://kafka:29092,LISTENER_OUT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_IN:PLAINTEXT,LISTENER_OUT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_IN
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    links:
+      - zookeeper
+    volumes:
+      - kafka-data:/var/lib/kafka
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry
+    container_name: schema-registry
+    ports:
+      - 8081:8081
+    depends_on:
+      - kafka
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "PLAINTEXT://kafka:29092"
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: INFO
+
+  kafkahq:
+    image: tchiotludo/kafkahq
+    container_name: kafka_ui
+    environment:
+      MICRONAUT_APPLICATION_JSON: |
+        {
+          "kafkahq": {
+            "connections": {
+              "docker-kafka-server": {
+                  "properties": {
+                    "bootstrap.servers": "kafka:29092"
+                  },
+                  "schema-registry": "http://schema-registry:8081"
+              }
+            }
+          }
+        }
+    ports:
+      - 11080:8080
+    links:
+      - kafka
+      - schema-registry
+      
+volumes:
+  zookeeper-data:
+    driver: local
+  kafka-data:
+    driver: local
+
+
+
