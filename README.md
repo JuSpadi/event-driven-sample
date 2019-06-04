@@ -9,4 +9,10 @@ This sample describe the basis of a event-driven project
 
 A docker-compose is set in project to have kafka, kafkahq and a schema registry
 
+```
 docker-compose -f src/main/docker-compose.yml  up -d --remove-orphans
+```
+
+You can see topics [here](http://localhost:11080)
+
+
