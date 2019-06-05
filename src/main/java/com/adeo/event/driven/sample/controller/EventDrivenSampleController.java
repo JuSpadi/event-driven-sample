@@ -1,8 +1,5 @@
 package com.adeo.event.driven.sample.controller;
 
-import java.rmi.server.UID;
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.adeo.event.driven.avro.Record;
 import com.adeo.event.driven.sample.SenderIn;
 
 @Controller
@@ -26,7 +24,7 @@ public class EventDrivenSampleController{
     @PostMapping(value = "/send")
     public ResponseEntity<Void> sendMessage(String messageContent) {
     	LOG.info("Creation message received");
-    	sender.send(UUID.randomUUID() +" "+ messageContent);
+    	sender.send(new Record("Test", messageContent));
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

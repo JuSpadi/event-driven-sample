@@ -6,18 +6,20 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.adeo.event.driven.avro.Record;
+
 @Service
 public class SenderOut {
 
     private static final Logger LOG = LoggerFactory.getLogger(SenderOut.class);
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Record> kafkaTemplate;
 
     @Value("${app.topic.event-driven-topic-out}")
     private String topic;
 
-    public void send(String message){
+    public void send(Record message){
         LOG.info("Sending message='{}' to topic='{}'", message, topic);
         kafkaTemplate.send(topic, message);
     }

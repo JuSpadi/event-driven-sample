@@ -14,6 +14,11 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
+import com.adeo.event.driven.avro.Record;
+
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+
 @EnableKafka
 @Configuration
 public class ReceiverConfig {
@@ -26,21 +31,23 @@ public class ReceiverConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "event-driven-api-group");
+        props.put("schema.registry.url", "http://localhost:8081");
+        props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         return props;
     }
 
     @Bean
-    public ConsumerFactory<String, String> consumerFactory() {
+    public ConsumerFactory<String, Record> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Record>> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Record> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
