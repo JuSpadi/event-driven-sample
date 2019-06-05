@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,18 @@ public class ReceiverIn {
     @Resource
     private EventDrivenSampleService service;
     
+    @Resource
+    private SenderError senderError;
+    
     @KafkaListener(topics = "${app.topic.event-driven-topic-in}")
-    public void listen(@Payload Record message) {
+    public void listen(@Payload Record message, Acknowledgment acknowledgment) {
     	LOG.info("Received message='{}'", message);
-    	service.sendMessage(message);
+    	try {
+			service.sendMessage(message);
+		} catch (Exception e) {
+			senderError.send(message);
+		}
+    	acknowledgment.acknowledge();
     }
 
 }

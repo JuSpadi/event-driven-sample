@@ -7,6 +7,8 @@ app:
   topic:
     event-driven-topic-in: event-driven-in
     event-driven-topic-out: event-driven-out
+    event-driven-topic-error: event-driven-error
+    
 
 logging:
   level:
