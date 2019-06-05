@@ -8,7 +8,7 @@ import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
-import com.adeo.event.driven.avro.Record;
+import com.adeo.event.driven.avro.RecordIn;
 import com.adeo.event.driven.sample.service.EventDrivenSampleService;
 
 @Service
@@ -23,11 +23,12 @@ public class ReceiverIn {
     private SenderError senderError;
     
     @KafkaListener(topics = "${app.topic.event-driven-topic-in}")
-    public void listen(@Payload Record message, Acknowledgment acknowledgment) {
+    public void listen(@Payload RecordIn message, Acknowledgment acknowledgment) {
     	LOG.info("Received message='{}'", message);
     	try {
 			service.sendMessage(message);
 		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
 			senderError.send(message);
 		}
     	acknowledgment.acknowledge();

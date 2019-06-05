@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.adeo.event.driven.avro.Record;
+import com.adeo.event.driven.avro.RecordIn;
 
 @Service
 public class SenderIn {
@@ -14,13 +14,13 @@ public class SenderIn {
     private static final Logger LOG = LoggerFactory.getLogger(SenderIn.class);
 
     @Autowired
-    private KafkaTemplate<String, Record> kafkaTemplate;
+    private KafkaTemplate<String, RecordIn> kafkaRecordInTemplate;
 
     @Value("${app.topic.event-driven-topic-in}")
     private String topic;
 
-    public void send(Record message){
+    public void send(RecordIn message){
         LOG.info("Sending message='{}' to topic='{}'", message, topic);
-        kafkaTemplate.send(topic, message);
+        kafkaRecordInTemplate.send(topic, message);
     }
 }

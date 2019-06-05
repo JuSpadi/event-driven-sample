@@ -1,9 +1,10 @@
 {
    "type" : "record",
    "namespace" : "com.adeo.event.driven.avro",
-   "name" : "Record",
+   "name" : "RecordIn",
    "fields" : [
       { "name" : "Code" , "type" : "string" },
-      { "name" : "Label" , "type" : "string" }
+      { "name" : "Label" , "type" : "string" },
+      { "name" : "Other" , "type" : "string" }
    ]
 }

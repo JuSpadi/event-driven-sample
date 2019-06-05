@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.adeo.event.driven.avro.Record;
+import com.adeo.event.driven.avro.RecordIn;
+import com.adeo.event.driven.avro.RecordOut;
 import com.adeo.event.driven.sample.SenderOut;
 
 /**
@@ -25,13 +26,13 @@ public class EventDrivenSampleService {
     
     private static final Logger LOG = LoggerFactory.getLogger(EventDrivenSampleService.class);
 	
-    public void sendMessage(Record messageContent) throws Exception {
-    	String transformedMessage = "Transformed : "+messageContent;
-    	LOG.info("Message treated in service : {}, transforming it to : {}", messageContent, transformedMessage);
+    public void sendMessage(RecordIn messageContent) throws Exception {
+    	RecordOut other = new RecordOut("Transformed" + messageContent.getLabel());
+    	LOG.info("Message transformation");
     	count++;
     	if (count%2 == 0) {
-    		throw new RuntimeException();
+    		throw new RuntimeException("error");
     	} 
-    	sender.send(messageContent);
+    	sender.send(other);
     }
 }

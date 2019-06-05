@@ -1,0 +1,8 @@
+{
+   "type" : "record",
+   "namespace" : "com.adeo.event.driven.avro",
+   "name" : "RecordOut",
+   "fields" : [
+      { "name" : "Value" , "type" : "string" }
+   ]
+}

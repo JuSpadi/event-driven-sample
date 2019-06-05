@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.adeo.event.driven.avro.Record;
+import com.adeo.event.driven.avro.RecordIn;
 import com.adeo.event.driven.sample.SenderIn;
 
 @Controller
@@ -24,7 +24,7 @@ public class EventDrivenSampleController{
     @PostMapping(value = "/send")
     public ResponseEntity<Void> sendMessage(String messageContent) {
     	LOG.info("Creation message received");
-    	sender.send(new Record("Test", messageContent));
+    	sender.send(new RecordIn("Test", messageContent, "other"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

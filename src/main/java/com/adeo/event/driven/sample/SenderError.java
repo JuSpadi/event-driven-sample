@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.adeo.event.driven.avro.Record;
+import com.adeo.event.driven.avro.RecordIn;
 
 @Service
 public class SenderError {
@@ -14,13 +14,13 @@ public class SenderError {
     private static final Logger LOG = LoggerFactory.getLogger(SenderError.class);
 
     @Autowired
-    private KafkaTemplate<String, Record> kafkaTemplate;
+    private KafkaTemplate<String, RecordIn> kafkaInTemplate;
 
     @Value("${app.topic.event-driven-topic-error}")
     private String topic;
 
-    public void send(Record message){
+    public void send(RecordIn message){
         LOG.info("Error message sending='{}' to topic='{}'", message, topic);
-        kafkaTemplate.send(topic, message);
+        kafkaInTemplate.send(topic, message);
     }
 }

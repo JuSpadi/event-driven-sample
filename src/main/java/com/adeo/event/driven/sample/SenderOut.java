@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.adeo.event.driven.avro.Record;
+import com.adeo.event.driven.avro.RecordOut;
 
 @Service
 public class SenderOut {
@@ -14,13 +14,13 @@ public class SenderOut {
     private static final Logger LOG = LoggerFactory.getLogger(SenderOut.class);
 
     @Autowired
-    private KafkaTemplate<String, Record> kafkaTemplate;
+    private KafkaTemplate<String, RecordOut> kafkaOutTemplate;
 
     @Value("${app.topic.event-driven-topic-out}")
     private String topic;
 
-    public void send(Record message){
+    public void send(RecordOut message){
         LOG.info("Sending message='{}' to topic='{}'", message, topic);
-        kafkaTemplate.send(topic, message);
+        kafkaOutTemplate.send(topic, message);
     }
 }
