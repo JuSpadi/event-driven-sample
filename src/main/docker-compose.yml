@@ -46,7 +46,7 @@ services:
       SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: INFO
 
   kafkahq:
-    image: tchiotludo/kafkahq
+    image: tchiotludo/kafkahq:0.5.3
     container_name: kafka_ui
     environment:
       MICRONAUT_APPLICATION_JSON: |

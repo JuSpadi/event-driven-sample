@@ -5,13 +5,13 @@ spring:
       schema.registry.url: ${SCHEMA_REGISTRY_URL:http://localhost:8081}
 app:
   topic:
-    event-driven-topic-in: event-driven-in
+    event-driven-topic-in: cotation
     event-driven-topic-out: event-driven-out
     event-driven-topic-error: event-driven-error
     
 
 logging:
   level:
-    root: ERROR
+    root: info
     org.springframework.web: ERROR
     com.adeo.event.driven.sample: DEBUG

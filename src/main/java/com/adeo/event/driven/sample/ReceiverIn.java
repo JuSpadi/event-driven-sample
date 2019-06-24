@@ -3,13 +3,13 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
-import com.adeo.event.driven.avro.RecordIn;
+import com.adeo.event.driven.avro.LysProgram;
 import com.adeo.event.driven.sample.service.EventDrivenSampleService;
+import com.adeo.lys.event.cotation.CotationCotedEvent;
 
 @Service
 public class ReceiverIn {
@@ -22,14 +22,14 @@ public class ReceiverIn {
     @Resource
     private SenderError senderError;
     
-    @KafkaListener(topics = "${app.topic.event-driven-topic-in}")
-    public void listen(@Payload RecordIn message, Acknowledgment acknowledgment) {
+//    @KafkaListener(topics = "${app.topic.event-driven-topic-out}")
+    public void listen(@Payload LysProgram message, Acknowledgment acknowledgment) {
     	LOG.info("Received message='{}'", message);
     	try {
-			service.sendMessage(message);
+//			service.sendMessage(message);
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
-			senderError.send(message);
+			senderError.send(new CotationCotedEvent());
 		}
     	acknowledgment.acknowledge();
     }

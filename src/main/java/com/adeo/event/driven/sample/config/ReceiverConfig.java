@@ -15,7 +15,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.AbstractMessageListenerContainer.AckMode;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
-import com.adeo.event.driven.avro.RecordIn;
+import com.adeo.event.driven.avro.LysProgram;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
@@ -43,13 +43,13 @@ public class ReceiverConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, RecordIn> consumerFactory() {
+    public ConsumerFactory<String, LysProgram> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, RecordIn>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, RecordIn> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, LysProgram>> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, LysProgram> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.getContainerProperties().setAckMode(AckMode.MANUAL);
         return factory;

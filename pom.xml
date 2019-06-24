@@ -76,6 +76,12 @@
 			<artifactId>kafka-schema-registry-client</artifactId>
 			<version>${kafka-avro-serializer.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.adeo.lys.event</groupId>
+			<artifactId>lys-event</artifactId>
+			<version>19.1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,0 +1,35 @@
+{
+ "type": "record",
+ "namespace" : "com.adeo.event.driven.avro",
+ "name": "LysProgram",
+ "fields": [
+   {
+     "name": "active",
+     "type": "boolean"
+   },
+   {
+     "name": "duration",
+     "type": "int"
+   },
+   {
+     "name": "durationUnit",
+     "type": "string"
+   },
+   {
+     "name": "employee",
+     "type": "boolean"
+   },
+   {
+     "name": "fee",
+     "type": "string"
+   },
+   {
+     "name": "tag",
+     "type": "string"
+   },
+   {
+     "name": "type",
+     "type": "int"
+   }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+  "customer": {
+    "customerNumber": "499",
+    "customerType": null,
+    "birthDate": null,
+    "managementEntity": null,
+    "classifications": null,
+    "externalIdentifiers": null,
+    "rank": null
+  },
+  "transactionContext": {
+    "commit": false,
+    "entityCode": null,
+    "lines": [
+      {
+        "lineNumber": 0,
+        "productCode": "00002163",
+        "orderNumber": "0",
+        "transactionDate": null,
+        "type": "SALE",
+        "quantity": 1,
+        "unitaryAmount": 10000,
+        "discountedAmount": 9950,
+        "vatCode": 0,
+        "reducedVatCode": 0,
+        "excludedTemplates": [],
+        "rewards": [
+          {
+            "rewardType": "UNIT",
+            "offerCode": "TESTJSI",
+            "advantageCode": "TESTJSI",
+            "templateCode": "punctual",
+            "calcModeCode": "FIXED",
+            "restrictionCode": "DISPATCH",
+            "beneficiaryId": null,
+            "value": "50",
+            "benefType": "TRANSACTION",
+            "externalCode": null,
+            "discountValue": 50,
+            "directApplication": false,
+            "attributes": []
+          },
+          {
+            "rewardType": "RANK",
+            "offerCode": "TESTJSI",
+            "advantageCode": "TESTJSI",
+            "templateCode": "punctual",
+            "calcModeCode": null,
+            "restrictionCode": "DISPATCH",
+            "beneficiaryId": null,
+            "value": "GOLD",
+            "benefType": null,
+            "externalCode": null,
+            "discountValue": null,
+            "directApplication": false,
+            "attributes": []
+          },
+          {
+            "rewardType": "REWARD",
+            "offerCode": "TESTJSI",
+            "advantageCode": "TESTJSI",
+            "templateCode": "punctual",
+            "calcModeCode": null,
+            "restrictionCode": "DISPATCH",
+            "beneficiaryId": null,
+            "value": "Ch?que fid?lit? Programme Essentielle",
+            "benefType": null,
+            "externalCode": null,
+            "discountValue": null,
+            "directApplication": false,
+            "attributes": [
+              {
+                "code": "initialAmount",
+                "value": "100"
+              }
+            ]
+          },
+          {
+            "rewardType": "DISCOUNT",
+            "offerCode": "TESTJSI",
+            "advantageCode": "TESTJSI",
+            "templateCode": "punctual",
+            "calcModeCode": "FIXED",
+            "restrictionCode": "DISPATCH",
+            "beneficiaryId": null,
+            "value": "50",
+            "benefType": "TRANSACTION",
+            "externalCode": null,
+            "discountValue": 50,
+            "directApplication": true,
+            "attributes": []
+          }
+        ],
+        "inputDiscounts": []
+      }
+    ],
+    "totalAmount": 9950,
+    "time": null,
+    "transactionDate": null,
+    "inputDiscounts": []
+  },
+  "additionnalInfo": {
+    "value1": null,
+    "value2": null
+  },
+  "loyalty": {
+    "accountNumber": null,
+    "cardNumber": null,
+    "membershipType": null,
+    "loyaltyStatus": null,
+    "counters": {},
+    "activeCoupons": []
+  },
+  "rewardSummary": [
+    {
+      "rewardType": "RANK",
+      "offerCode": "TESTJSI",
+      "advantageCode": "TESTJSI",
+      "templateCode": "punctual",
+      "calcModeCode": null,
+      "restrictionCode": "DISPATCH",
+      "beneficiaryId": null,
+      "value": "GOLD",
+      "benefType": null,
+      "externalCode": null,
+      "discountValue": null,
+      "directApplication": false,
+      "attributes": []
+    },
+    {
+      "rewardType": "REWARD",
+      "offerCode": "TESTJSI",
+      "advantageCode": "TESTJSI",
+      "templateCode": "punctual",
+      "calcModeCode": null,
+      "restrictionCode": "DISPATCH",
+      "beneficiaryId": null,
+      "value": "Ch?que fid?lit? Programme Essentielle",
+      "benefType": null,
+      "externalCode": null,
+      "discountValue": null,
+      "directApplication": false,
+      "attributes": [
+        {
+          "code": "initialAmount",
+          "value": "100"
+        }
+      ]
+    },
+    {
+      "rewardType": "UNIT",
+      "offerCode": "TESTJSI",
+      "advantageCode": "TESTJSI",
+      "templateCode": "punctual",
+      "calcModeCode": "FIXED",
+      "restrictionCode": "DISPATCH",
+      "beneficiaryId": null,
+      "value": "50",
+      "benefType": "TRANSACTION",
+      "externalCode": null,
+      "discountValue": 50,
+      "directApplication": false,
+      "attributes": []
+    },
+    {
+      "rewardType": "DISCOUNT",
+      "offerCode": "TESTJSI",
+      "advantageCode": "TESTJSI",
+      "templateCode": "punctual",
+      "calcModeCode": "FIXED",
+      "restrictionCode": "DISPATCH",
+      "beneficiaryId": null,
+      "value": "50",
+      "benefType": "TRANSACTION",
+      "externalCode": null,
+      "discountValue": 50,
+      "directApplication": true,
+      "attributes": []
+    }
+  ],
+  "buId": "53"
+}
