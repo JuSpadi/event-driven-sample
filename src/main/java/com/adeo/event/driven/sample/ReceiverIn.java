@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.adeo.event.driven.avro.LysProgram;
 import com.adeo.event.driven.sample.service.EventDrivenSampleService;
-import com.adeo.lys.event.cotation.CotationCotedEvent;
+import com.adeo.lys.event.context.ContextCreateOrUpdateInEvent;
 
 @Service
 public class ReceiverIn {
@@ -29,7 +29,7 @@ public class ReceiverIn {
 //			service.sendMessage(message);
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
-			senderError.send(new CotationCotedEvent());
+			senderError.send(new ContextCreateOrUpdateInEvent());
 		}
     	acknowledgment.acknowledge();
     }

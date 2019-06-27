@@ -11,7 +11,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
 import com.adeo.event.driven.avro.RecordOut;
-import com.adeo.lys.event.cotation.CotationCotedEvent;
+import com.adeo.lys.event.context.ContextCreateOrUpdateInEvent;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 
@@ -32,12 +32,12 @@ public class SenderConfig {
     }
 
     @Bean
-    public ProducerFactory<String, CotationCotedEvent> producerRecordFactory() {
+    public ProducerFactory<String, ContextCreateOrUpdateInEvent> producerRecordFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, CotationCotedEvent> kafkaTemplate() {
+    public KafkaTemplate<String, ContextCreateOrUpdateInEvent> kafkaTemplate() {
         return new KafkaTemplate<>(producerRecordFactory());
     }
 

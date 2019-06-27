@@ -10,10 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.adeo.event.driven.sample.SenderIn;
-import com.adeo.lys.event.cotation.CotationCotedEvent;
+import com.adeo.lys.event.context.ContextCreateOrUpdateInEvent;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,12 +31,18 @@ public class EventDrivenSampleController{
     @PostMapping(value = "/send")
     public ResponseEntity<Void> sendMessage(String messageContent) throws JsonParseException, JsonMappingException, IOException {
     	LOG.info("Creation message received");
-//    	sender.send(new RecordIn("Test", messageContent, "other"));
-//    	sender.send(new LysProgram(true, 1, "TEST", true, "0", "tag", 1));
 		ObjectMapper mapper = new ObjectMapper();
-		ClassPathResource sequenceRes = new ClassPathResource("/cotation.json");
-		sender.send(mapper.readValue(sequenceRes.getFile(), CotationCotedEvent.class));
+		ClassPathResource sequenceRes = new ClassPathResource("/context.json");
+		sender.send(mapper.readValue(sequenceRes.getFile(), ContextCreateOrUpdateInEvent.class));
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping(value = "/send2")
+    public ResponseEntity<Void> sendMessageBody(@RequestBody ContextCreateOrUpdateInEvent event) throws JsonParseException, JsonMappingException, IOException {
+    	LOG.info("Creation message received");
+		sender.send(event);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
     
 }
