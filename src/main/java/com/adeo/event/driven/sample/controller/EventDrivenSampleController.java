@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.adeo.event.driven.sample.SenderIn;
@@ -36,13 +35,4 @@ public class EventDrivenSampleController{
 		sender.send(mapper.readValue(sequenceRes.getFile(), ContextCreateOrUpdateInEvent.class));
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    @PostMapping(value = "/send2")
-    public ResponseEntity<Void> sendMessageBody(@RequestBody ContextCreateOrUpdateInEvent event) throws JsonParseException, JsonMappingException, IOException {
-    	LOG.info("Creation message received");
-		sender.send(event);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-    
-    
 }
