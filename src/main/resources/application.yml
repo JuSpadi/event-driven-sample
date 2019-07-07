@@ -5,9 +5,9 @@ spring:
       schema.registry.url: ${SCHEMA_REGISTRY_URL:http://localhost:8081}
 app:
   topic:
-    event-driven-topic-in: context-driven-in
-    event-driven-topic-out: context-driven-out
-    event-driven-topic-error: context-driven-error
+    event-driven-topic-in: lys.internal.identification
+    event-driven-topic-out: lys.identification
+    event-driven-topic-error: lys.identification.error
     
 
 logging:
