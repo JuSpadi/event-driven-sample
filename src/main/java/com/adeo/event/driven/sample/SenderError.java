@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.adeo.lys.event.context.ContextCreateOrUpdateInEvent;
-
-
+import loyalty.internal.last.update.identifier.context.identification;
 
 @Service
 public class SenderError {
@@ -16,12 +14,12 @@ public class SenderError {
     private static final Logger LOG = LoggerFactory.getLogger(SenderError.class);
 
     @Autowired
-    private KafkaTemplate<String, ContextCreateOrUpdateInEvent> kafkaTemplate;
+    private KafkaTemplate<String, identification> kafkaTemplate;
 
     @Value("${app.topic.event-driven-topic-error}")
     private String topic;
 
-    public void send(ContextCreateOrUpdateInEvent message){
+    public void send(identification message){
         LOG.info("Error message sending='{}' to topic='{}'", message, topic);
         kafkaTemplate.send(topic, message);
     }

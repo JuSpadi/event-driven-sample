@@ -5,8 +5,13 @@ spring:
       schema.registry.url: ${SCHEMA_REGISTRY_URL:http://localhost:8081}
 app:
   topic:
-    event-driven-topic-in: lys.internal.identification
-    event-driven-topic-out: lys.identification
+    
+    #SENDER (CREATION CONTEXT)
+    event-driven-topic-in: loyalty.internal.last.update.identifier.context.identification
+    
+    #RECEIVER (CONTEXT
+    event-driven-topic-out: loyalty.internal.last.out.identifier.context.identification
+    
     event-driven-topic-error: lys.identification.error
     
 

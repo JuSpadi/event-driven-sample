@@ -12,13 +12,11 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.listener.AbstractMessageListenerContainer.AckMode;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
-
-import com.adeo.event.driven.avro.LysProgram;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+import loyalty.internal.last.out.identifier.context.identification;
 
 @EnableKafka
 @Configuration
@@ -32,9 +30,10 @@ public class ReceiverConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "event-driven-api-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, "context-consumer");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "lys-context-in-topic-group-dev");
         props.put("schema.registry.url", "http://localhost:8081");
         props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
@@ -43,15 +42,14 @@ public class ReceiverConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, LysProgram> consumerFactory() {
+    public ConsumerFactory<String, identification> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, LysProgram>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, LysProgram> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, identification>> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, identification> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.getContainerProperties().setAckMode(AckMode.MANUAL);
         return factory;
     }
 

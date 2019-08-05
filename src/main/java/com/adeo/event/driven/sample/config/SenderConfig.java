@@ -10,10 +10,8 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
-import com.adeo.event.driven.avro.RecordOut;
-import com.adeo.lys.event.context.ContextCreateOrUpdateInEvent;
-
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import loyalty.internal.last.update.identifier.context.identification;
 
 @Configuration
 public class SenderConfig {
@@ -32,23 +30,12 @@ public class SenderConfig {
     }
 
     @Bean
-    public ProducerFactory<String, ContextCreateOrUpdateInEvent> producerRecordFactory() {
+    public ProducerFactory<String, identification> producerRecordFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, ContextCreateOrUpdateInEvent> kafkaTemplate() {
+    public KafkaTemplate<String, identification> kafkaTemplate() {
         return new KafkaTemplate<>(producerRecordFactory());
-    }
-
-    
-    @Bean
-    public ProducerFactory<String, RecordOut> producerOtherFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigs());
-    }
-
-    @Bean
-    public KafkaTemplate<String, RecordOut> kafkaOtherTemplate() {
-        return new KafkaTemplate<>(producerOtherFactory());
     }
 }
