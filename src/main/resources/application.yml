@@ -1,3 +1,6 @@
+server:
+  port: ${PORT:8080}
+
 spring:
   kafka:
     bootstrap-servers: localhost:9092
@@ -7,11 +10,11 @@ app:
   topic:
     
     #SENDER (CREATION CONTEXT)
-    event-driven-topic-in: loyalty.internal.last.update.identifier.context.identification
+    event-driven-topic-in: ${TOPIC_IN:loyalty.internal.last.update.identifier.context.identification}
     
     #RECEIVER (CONTEXT
-    event-driven-topic-out: loyalty.internal.last.out.identifier.context.identification
-    
+    event-driven-topic-out: ${TOPIC_OUT:loyalty.internal.last.out.identifier.context.identification}
+        
     event-driven-topic-error: lys.identification.error
     
 
