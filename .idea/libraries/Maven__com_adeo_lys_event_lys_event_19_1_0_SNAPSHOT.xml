@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.adeo.lys.event:lys-event:19.1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/adeo/lys/event/lys-event/19.1.0-SNAPSHOT/lys-event-19.1.0-20190806.152306-56.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/adeo/lys/event/lys-event/19.1.0-SNAPSHOT/lys-event-19.1.0-20190806.152306-56-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/adeo/lys/event/lys-event/19.1.0-SNAPSHOT/lys-event-19.1.0-20190806.152306-56-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

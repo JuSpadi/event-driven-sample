@@ -21,4 +21,7 @@ mvn spring-boot:run
 
 You can see topics [here](http://localhost:11080)
 
-Access to swagger [here](http://localhost:8080/swagger-ui.html)
+Access to swagger [here](http://localhost:8080/swagger-ui.html)## Maintainers
+* **Domain Application Leader**: Olivier Lehouck
+* **Digital Product Leader**:  Julien Spadi
+* **Product Owner**:  Christophe Stevenard
