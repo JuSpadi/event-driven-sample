@@ -25,3 +25,8 @@ Access to swagger [here](http://localhost:8080/swagger-ui.html)## Maintainers
 * **Domain Application Leader**: Olivier Lehouck
 * **Digital Product Leader**:  Julien Spadi
 * **Product Owner**:  Christophe Stevenard
+
+## Maintainers
+* **Domain Application Leader**: OLK
+* **Digital Product Leader**:  JSI
+* **Product Owner**:  CSD
